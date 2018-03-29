@@ -1,14 +1,49 @@
 import foursquare
 
-client = foursquare.Foursquare(client_id='PLACEHOLDER', client_secret='PLACEHOLDER', redirect_uri='dslkfja')
-
+client = foursquare.Foursquare(client_id='placeholder', client_secret='placeholder', redirect_uri='')
 auth_uri = client.oauth.auth_url()
 
-search = client.venues.search(params={'ll': "41.634743, -80.154473", "limit": "50"})
+def search():
+    category = str(input("What category would you like to search\n")).lower()
+    category_id = get_category_id(category)
+    if category_id == None:
+        print("Category could not be found")
+        return
+    num_results = str(input("How many results would you like to see (Max: 100)\n"))
 
-venues = search['venues']
+    search = client.venues.search(params={'ll': "41.634743, -80.154473", "limit": num_results, 'categoryId': category_id})
 
-for venue in venues:
-    print(venue['name'])
+    venues = search['venues']
 
-# print(str(test['venues']))
+    for venue in venues:
+         print(venue['name'])
+
+
+
+def get_categories():
+    categories = client.venues.categories()
+    category_list = categories['categories']
+    for category in category_list:
+        print(category['name'])
+
+def get_sub_categories():
+    categories = client.venues.categories()
+    category_list = categories['categories']
+    for category in category_list:
+        print(category['name'])
+        for c in category['categories']:
+            print("\t"+c['name'])
+        print()
+
+def get_category_id(c):
+    categories = client.venues.categories()['categories']
+    for category in categories:
+        if c == category['name'].lower():
+            return category['id']
+        else:
+            for cat in category['categories']:
+                if c == cat['name'].lower():
+                    return cat['id']
+    return None
+
+33768001254476
