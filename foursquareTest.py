@@ -1,6 +1,6 @@
 import foursquare
 
-client = foursquare.Foursquare(client_id='placeholder', client_secret='placeholder', redirect_uri='')
+client = foursquare.Foursquare(client_id='1B2TR04AIROKCJV0DJ1IMGY1XNHZCJLSMOMZABV5WR4LZX4H', client_secret='GTNERYL0L3WMDUG2QSCNWLZCO30AFW1E4X3UMFXACT02L41M', redirect_uri='')
 auth_uri = client.oauth.auth_url()
 
 def search(category_id,num_results):
