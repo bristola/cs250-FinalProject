@@ -12,7 +12,7 @@ if __name__ == '__main__':
         if command == "help":
             main.help_info()
         elif command == "search":
-            main.search()
+            main.general_search()
         elif command == "categories":
             sub = str(input("Would you like to view sub categories as well (yes/no)\n")).lower()
             if sub == "no":
@@ -23,9 +23,27 @@ if __name__ == '__main__':
             users.append(main.createUser())
         elif command == "show users":
             for u in users:
-                print("test"+repr(u))
+                print(repr(u))
         elif command == "pick location":
-            picker.pickLocation(users)
+            food = ''
+            other = ''
+            maxFood, maxOther = picker.rankInterests(users)
+            for Food in maxFood:
+                food += foursquareTest.get_category_id(Food) + ','
+            for Other in maxOther:
+                other += foursquareTest.get_category_id(Other) + ','
+            picked = list()
+            print(len(users))
+            for user in users:
+                venues = foursquareTest.search(user,food,other)
+                # for venue in list(venues):
+                #     if maxFood not in venue['categories'] or maxOther not in venue['categories']:
+                #         venues.remove(venue)
+                for venue in venues:
+                    picked.append(venue)
+            print("\nPicked: ")
+            for pick in picked:
+                print(pick['name'])
 
         command = str(input("\nWhat would you like to do\n")).lower()
 
@@ -37,6 +55,8 @@ def createUser():
     decision = input("Would you like to input a city or longitude/latitude? (1 or 2)")
     if decision == "1":
         city = input("What city do you live in?")
+        state = input("What state is the city in? ")
+        city = city + ", "+state
     elif decision == "2":
         longitude = input("What is your longitude?")
         latitude = input("What is your latitude?")
@@ -70,14 +90,14 @@ def createUser():
 
     return user
 
-def search():
+def general_search():
     category = str(input("What category would you like to search\n")).lower()
     category_id = foursquareTest.get_category_id(category)
     if category_id == None:
         print("Category could not be found")
         return
-    num_results = str(input("How many results would you like to see (Max: 100)\n"))
-    foursquareTest.search(category_id, num_results)
+    num_results = str(input("How many results would you like to see (Max: 50)\n"))
+    foursquareTest.general_search(category_id, num_results)
 
 def help_info():
     print("Possible Commands:")

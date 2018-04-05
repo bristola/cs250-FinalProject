@@ -21,6 +21,9 @@ class User:
     def getLatitude(self):
         return self.lat
 
+    def getCity(self):
+        return self.city
+
     def getFoodInterests(self):
         return self.foodInterests
 
