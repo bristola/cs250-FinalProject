@@ -1,10 +1,10 @@
-def pickLocation(users):
+def rankInterests(users):
     # Rank categories based on occurence
     ranksFood = dict()
     for user in users:
         for food in user.getFoodInterests():
-            if food in ranks:
-                ranksFood[food] = ranks[food] + 1
+            if food in ranksFood:
+                ranksFood[food] = ranksFood[food] + 1
             else:
                 ranksFood[food] = 1
 
@@ -18,3 +18,8 @@ def pickLocation(users):
 
     for key, value in ranks.items():
         print(str(key) +" : "+str(value))
+    print(str(list(ranksFood.keys())) +" "+ str(list(ranks.keys())))
+    return list(ranksFood.keys()), list(ranks.keys())
+
+def pickLocations(ranksFood, ranks, venues):
+    return
