@@ -3,26 +3,21 @@ class User:
     userID = None
     foodInterests = None
     interests = None
-    lon = None
-    lat = None
     city = None
+    state = None
 
-    def __init__(self, userID, lon=None, lat=None, city=None):
+    def __init__(self, userID, city=None, state=None):
         self.userID = userID
         self.foodInterests = list()
         self.interests = list()
-        self.lon = lon
-        self.lat = lat
         self.city = city
-
-    def getLongitude(self):
-        return self.lon
-
-    def getLatitude(self):
-        return self.lat
+        self.state = state
 
     def getCity(self):
         return self.city
+
+    def getState(self):
+        return self.state
 
     def getFoodInterests(self):
         return self.foodInterests
@@ -30,11 +25,11 @@ class User:
     def getInterests(self):
         return self.interests
 
-    def setLongitude(self, lon):
-        self.lon = lon
+    def setCity(self, city):
+        self.city = city
 
-    def setLatitude(self, lat):
-        self.lat = lat
+    def setState(self, state):
+        self.state = state
 
     def setFoodInterests(self, foodInterests):
         self.foodInterests = foodInterests
@@ -43,4 +38,4 @@ class User:
         self.interests = interests
 
     def __repr__(self):
-        return str(self.userID) + " | " + str(self.city)+" | " + str(self.lon) + " " + str(self.lat) + " | " + "Food Interests: "+ ' '.join(self.foodInterests) + " | " + "Interests: "+ ' '.join(self.interests)
+        return str(self.userID) + " | " + str(self.city)+", "+ str(self.state)+" | " + "Food Interests: "+ ' '.join(self.foodInterests) + " | " + "Interests: "+ ' '.join(self.interests)

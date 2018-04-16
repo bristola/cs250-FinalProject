@@ -25,42 +25,17 @@ if __name__ == '__main__':
             for u in users:
                 print(repr(u))
         elif command == "pick location":
-            food = ''
-            other = ''
-            maxFood, maxOther = picker.rankInterests(users)
-            for Food in maxFood:
-                food += foursquareTest.get_category_id(Food) + ','
-            for Other in maxOther:
-                other += foursquareTest.get_category_id(Other) + ','
-            picked = list()
-            print(len(users))
-            for user in users:
-                venues = foursquareTest.search(user,food,other)
-                # for venue in list(venues):
-                #     if maxFood not in venue['categories'] or maxOther not in venue['categories']:
-                #         venues.remove(venue)
-                for venue in venues:
-                    picked.append(venue)
-            print("\nPicked: ")
-            for pick in picked:
-                print(pick['name'])
+            picker.pickLocations(users)
 
         command = str(input("\nWhat would you like to do\n")).lower()
 
 def createUser():
     userID = input("What is the users ID?")
     city = None
-    longitude = None
-    latitude = None
-    decision = input("Would you like to input a city or longitude/latitude? (1 or 2)")
-    if decision == "1":
-        city = input("What city do you live in?")
-        state = input("What state is the city in? ")
-        city = city + ", "+state
-    elif decision == "2":
-        longitude = input("What is your longitude?")
-        latitude = input("What is your latitude?")
-    user = User(userID, longitude, latitude, city)
+    state = None
+    city = input("What city do you live in?")
+    state = input("What state is the city in? ")
+    user = User(userID, city, state)
 
     print("Please enter as many food intersts you want from the list of food interests (type stop if you are done entering interests)")
     foodInterests = list()
