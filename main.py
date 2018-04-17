@@ -3,7 +3,7 @@ import foursquareTest
 import picker
 from user import User
 
-commands = ['quit','help','categories','search']
+commands = ['quit','help','categories','search','new user','show users','delete user','pick location']
 users = list()
 if __name__ == '__main__':
     print("Insert project name here\n")
@@ -24,8 +24,12 @@ if __name__ == '__main__':
         elif command == "show users":
             for u in users:
                 print(repr(u))
+        elif command == "delete user":
+            delete_user()
         elif command == "pick location":
             picker.pickLocations(users)
+        else:
+            print("That is not an option")
 
         command = str(input("\nWhat would you like to do\n")).lower()
 
@@ -64,6 +68,12 @@ def createUser():
     user.setInterests(interests)
 
     return user
+
+def delete_user():
+    userID = input("What userId would you like to delete?")
+    for user in list(users):
+        if user.getId() == userID:
+            users.remove(user)
 
 def general_search():
     category = str(input("What category would you like to search\n")).lower()

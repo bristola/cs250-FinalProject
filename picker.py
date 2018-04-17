@@ -1,4 +1,5 @@
 import foursquareTest
+
 def rankInterests(users):
     # Rank categories based on occurence
     ranksFood = dict()
@@ -17,12 +18,14 @@ def rankInterests(users):
             else:
                 ranks[interest] = 1
 
-    for key, value in ranks.items():
-        print(str(key) +" : "+str(value))
-    print(str(list(ranksFood.keys())) +" "+ str(list(ranks.keys())))
+    #for key, value in ranks.items():
+        #print(str(key) +" : "+str(value))
+    #print(str(list(ranksFood.keys())) +" "+ str(list(ranks.keys())))
     return list(ranksFood.keys()), list(ranks.keys())
 
 def pickLocations(users):
+    food_venues = list()
+    act_venues = list()
     food = ''
     other = ''
     maxFood, maxOther = rankInterests(users)
@@ -30,16 +33,27 @@ def pickLocations(users):
         food += foursquareTest.get_category_id(Food) + ','
     for Other in maxOther:
         other += foursquareTest.get_category_id(Other) + ','
-    picked = list()
-    print(len(users))
     for user in users:
-        venues = foursquareTest.search(user,food,other)
-        # for venue in list(venues):
-        #     if maxFood not in venue['categories'] or maxOther not in venue['categories']:
-        #         venues.remove(venue)
-        for venue in venues:
-            picked.append(venue)
-    print("\nPicked: ")
-    for pick in picked:
-        print(pick['name'])
+        for venue in foursquareTest.search(user,food):
+            if venue not in food_venues:
+                print("TEST1")
+                food_venues.append(venue)
+            else:
+                print("TEST3")
+        for venue in foursquareTest.search(user,other):
+            if venue not in act_venues:
+                print("TEST2")
+                act_venues.append(venue)
+            else:
+                print("TEST4")
+    num = 1
+    print("\n"+str(len(food_venues))+" FOOD:")
+    for venue in food_venues:
+        print(str(num)+": "+venue['name'])
+        num+=1
+    num = 1
+    print("\n"+str(len(act_venues))+" Activities:")
+    for venue in act_venues:
+        print(str(num)+": "+venue['name'])
+        num+=1
     return

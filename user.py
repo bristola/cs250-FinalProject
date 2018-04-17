@@ -13,6 +13,9 @@ class User:
         self.city = city
         self.state = state
 
+    def getId(self):
+        return self.userID
+
     def getCity(self):
         return self.city
 

@@ -9,18 +9,10 @@ def general_search(city,state,category_id,num_results):
     for venue in venues:
          print(venue['name'])
 
-def search(user,food,other):
+def search(user,cat):
     print()
-    search_food = api.venues.search(params={'near': str(user.getCity())+","+str(user.getState()), 'categoryId': str(food)})
-    # print("test\n"+ str(search_food) + "\ntest")
-    search_other = api.venues.search(params={'near': str(user.getCity())+","+str(user.getState()), 'categoryId': str(other)})
-    for venue in search['venues']:
-        print(venue)
-        for categories in venue['categories']:
-            print("\t"+str(categories))
+    search = api.venues.search(params={'near': str(user.getCity())+","+str(user.getState()), 'categoryId': str(cat)})
     venues = search['venues']
-    # for venue in venues:
-    #     print(venue['name'])
     return venues
 
 def get_categories():
