@@ -22,10 +22,13 @@ if __name__ == '__main__':
         elif command == "new user":
             users.append(main.createUser())
         elif command == "show users":
-            for u in users:
-                print(repr(u))
+            if len(users) != 0:
+                for u in users:
+                    print(repr(u))
+            else:
+                print("No Users")
         elif command == "delete user":
-            delete_user()
+            main.delete_user(users)
         elif command == "pick location":
             picker.pickLocations(users)
         else:
@@ -34,10 +37,10 @@ if __name__ == '__main__':
         command = str(input("\nWhat would you like to do\n")).lower()
 
 def createUser():
-    userID = input("What is the users ID?")
+    userID = input("What is the users ID? ")
     city = None
     state = None
-    city = input("What city do you live in?")
+    city = input("What city do you live in? ")
     state = input("What state is the city in? ")
     user = User(userID, city, state)
 
@@ -54,7 +57,7 @@ def createUser():
             foodInterests.remove(interest)
     user.setFoodInterests(foodInterests)
 
-    print("Please enter as many activity intersts you want from the list of activity intersts (type stop if you are done entering interests)")
+    print("Please enter as many activity intersts you want from the list of activity intersts (type stop if you are done entering interests) ")
     interests = list()
     while (True):
         interest = input().lower()
@@ -69,8 +72,8 @@ def createUser():
 
     return user
 
-def delete_user():
-    userID = input("What userId would you like to delete?")
+def delete_user(users):
+    userID = input("What userId would you like to delete? ")
     for user in list(users):
         if user.getId() == userID:
             users.remove(user)

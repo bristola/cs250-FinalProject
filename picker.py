@@ -18,9 +18,6 @@ def rankInterests(users):
             else:
                 ranks[interest] = 1
 
-    #for key, value in ranks.items():
-        #print(str(key) +" : "+str(value))
-    #print(str(list(ranksFood.keys())) +" "+ str(list(ranks.keys())))
     return list(ranksFood.keys()), list(ranks.keys())
 
 def pickLocations(users):
@@ -47,13 +44,13 @@ def pickLocations(users):
             else:
                 print("TEST4")
     num = 1
-    print("\n"+str(len(food_venues))+" FOOD:")
+    print("\n"+str(len(food_venues))+" FOOD Locations:")
     for venue in food_venues:
-        print(str(num)+": "+venue['name'])
+        print(str(num)+": "+str(venue['name'])+"- "+str(foursquareTest.get_venue_location(venue)))
         num+=1
     num = 1
     print("\n"+str(len(act_venues))+" Activities:")
     for venue in act_venues:
-        print(str(num)+": "+venue['name'])
+        print(str(num)+": "+str(venue['name'])+"- "+str(foursquareTest.get_venue_location(venue)))
         num+=1
     return

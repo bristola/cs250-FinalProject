@@ -12,9 +12,12 @@ user2.setFoodInterests(['diner'])
 user3.setFoodInterests(['buffet','burger joint'])
 user4.setFoodInterests(['food court','irish pub'])
 
-user1.setInterests(['movie theater','cemetary'])
-user2.setInterests(['cemetary','bar'])
+user1.setInterests(['movie theater','cemetery'])
+user2.setInterests(['bar','cemetery'])
 user3.setInterests(['gun range','pool'])
 user4.setInterests(['park','bar'])
 
 picker.pickLocations([user1,user2])
+# venues = foursquareTest.search(user1,foursquareTest.get_category_id('diner'))
+# for venue in venues:
+#     print(foursquareTest.get_venue_location(venue))

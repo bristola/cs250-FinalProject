@@ -15,6 +15,12 @@ def search(user,cat):
     venues = search['venues']
     return venues
 
+def get_venue_details(venue):
+    return api.venues(venue)['venue']
+
+def get_venue_location(venue):
+    location = get_venue_details(venue['id'])['location']
+    return location['formattedAddress']
 def get_categories():
     categories = api.venues.categories()
     category_list = categories['categories']
