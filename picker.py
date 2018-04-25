@@ -18,7 +18,20 @@ def rankInterests(users):
             else:
                 ranks[interest] = 1
 
-    return list(ranksFood.keys()), list(ranks.keys())
+    maxRank = 0
+    foodInterests = list()
+    for key, value in ranksFood.items():
+        if (value >= maxRank):
+            foodInterests.append(key)
+
+    maxRank = 0
+    interests = list()
+    for key, value in ranks.items():
+        if (value >= maxRank):
+            interests.append(key)
+
+
+    return foodInterests, interests
 
 def pickLocations(users):
     food_venues = list()
