@@ -3,6 +3,7 @@ import sort
 
 def rankInterests(users):
     # Rank categories based on occurence
+    maxFood = 0
     ranksFood = dict()
     for user in users:
         for food in user.getFoodInterests():
@@ -10,7 +11,10 @@ def rankInterests(users):
                 ranksFood[food] = ranksFood[food] + 1
             else:
                 ranksFood[food] = 1
+            if (ranksFood[food] > maxFood):
+                maxFood = ranksFood[food]
 
+    maxRank = 0
     ranks = dict()
     for user in users:
         for interest in user.getInterests():
@@ -18,14 +22,14 @@ def rankInterests(users):
                 ranks[interest] = ranks[interest] + 1
             else:
                 ranks[interest] = 1
+            if (ranks[interest] > maxRank):
+                maxRank = ranks[interest]
 
-    maxRank = 0
     foodInterests = list()
     for key, value in ranksFood.items():
         if (value >= maxRank):
             foodInterests.append(key)
 
-    maxRank = 0
     interests = list()
     for key, value in ranks.items():
         if (value >= maxRank):
