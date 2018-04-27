@@ -22,7 +22,7 @@ def get_venue_location(venue):
     return location['formattedAddress']
 
 def get_venue_price(venue):
-    print(venue['name'])
+    #print(venue['name'])
     price = get_venue_details(venue['id'])['price']
     return price['tier']
 

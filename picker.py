@@ -52,6 +52,9 @@ def pickLocations(users):
             if venue not in act_venues:
                 act_venues.append(venue)
     food_venues = sort.sort(food_venues,0,len(food_venues)-1) # nlogn
+    return food_venues, act_venues
+
+def printLocations(food_venues, act_venues):
     num = 1
     print("\n"+str(len(food_venues))+" Food Locations Sorted by Price:")
     for venue in food_venues: # num returned
@@ -63,4 +66,3 @@ def pickLocations(users):
     for venue in act_venues: # num returned
         print(str(num)+": "+str(venue['name'])+"- "+str(foursquareAPI.get_venue_location(venue)))
         num+=1
-    return food_venues, act_venues

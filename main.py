@@ -30,7 +30,8 @@ if __name__ == '__main__':
         elif command == "delete user":
             main.delete_user(users)
         elif command == "pick location":
-            picker.pickLocations(users)
+            fVenues, aVenues = picker.pickLocations(users)
+            picker.printLocations(fVenues,aVenues)
         else:
             print("That is not an option")
 
