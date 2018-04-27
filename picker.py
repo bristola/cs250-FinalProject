@@ -4,7 +4,9 @@ import sort
 def rankInterests(users):
     # Rank categories based on occurence
     maxFood = 0
+    maxRank = 0
     ranksFood = dict()
+    ranks = dict()
     for user in users:
         for food in user.getFoodInterests():
             if food in ranksFood:
@@ -13,10 +15,6 @@ def rankInterests(users):
                 ranksFood[food] = 1
             if (ranksFood[food] > maxFood):
                 maxFood = ranksFood[food]
-
-    maxRank = 0
-    ranks = dict()
-    for user in users:
         for interest in user.getInterests():
             if interest in ranks:
                 ranks[interest] = ranks[interest] + 1
