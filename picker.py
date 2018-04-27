@@ -53,12 +53,12 @@ def pickLocations(users):
                 act_venues.append(venue)
     food_venues = sort.sort(food_venues,0,len(food_venues)-1)
     num = 1
-    print("\n"+str(len(food_venues))+" Food Locations:")
+    print("\n"+str(len(food_venues))+" Food Locations Sorted by Price:")
     for venue in food_venues:
         print(str(num)+": "+str(venue['name'])+"- "+str(foursquareAPI.get_venue_location(venue)))
         num+=1
     num = 1
-    act_venues = sort.sort(act_venues,0,len(act_venues)-1)
+    #act_venues = sort.sort(act_venues,0,len(act_venues)-1)
     print("\n"+str(len(act_venues))+" Activities:")
     for venue in act_venues:
         print(str(num)+": "+str(venue['name'])+"- "+str(foursquareAPI.get_venue_location(venue)))

@@ -1,6 +1,6 @@
 import foursquare
 
-api = foursquare.Foursquare(client_id='LCC353M4TCQFYV1TTYMKHQ40SLHSHZC5DHFVUGB0QC2DQNTH', client_secret='ZJ0XMHGIMT5IOORPDHVQAUH0NS3M04DOTFM2FEYJLCGARUPW', redirect_uri='')
+api = foursquare.Foursquare(client_id='1B2TR04AIROKCJV0DJ1IMGY1XNHZCJLSMOMZABV5WR4LZX4H', client_secret='GTNERYL0L3WMDUG2QSCNWLZCO30AFW1E4X3UMFXACT02L41M', redirect_uri='')
 auth_uri = api.oauth.auth_url()
 
 def general_search(city,state,category_id,num_results):
@@ -10,7 +10,7 @@ def general_search(city,state,category_id,num_results):
          print(venue['name'])
 
 def search(user,cat):
-    search = api.venues.search(params={'near': str(user.getCity())+","+str(user.getState()),'limit': '10', 'categoryId': str(cat), 'radius': '16000', 'intent': 'browse'})
+    search = api.venues.search(params={'near': str(user.getCity())+","+str(user.getState()),'limit': '3', 'categoryId': str(cat), 'radius': '16000', 'intent': 'browse'})
     venues = search['venues']
     return venues
 

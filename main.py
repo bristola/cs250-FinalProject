@@ -92,11 +92,13 @@ def delete_user(users):
 def general_search():
     category = str(input("What category would you like to search\n")).lower()
     category_id = foursquareAPI.get_category_id(category)
+    city = input("What city do you want to search in? ")
+    state = input("What state is the city in? ")
     if category_id == None:
         print("Category could not be found")
         return
     num_results = str(input("How many results would you like to see (Max: 50)\n"))
-    foursquareAPI.general_search(category_id, num_results)
+    foursquareAPI.general_search(city, state, category_id, num_results)
 
 def help_info():
     print("Possible Commands:")
