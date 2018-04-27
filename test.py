@@ -17,7 +17,8 @@ user2.setInterests(['bar','cemetery'])
 user3.setInterests(['gun range','pool'])
 user4.setInterests(['park','bar'])
 
-picker.pickLocations([user1,user2,user3])
+fVenues, aVenues = picker.pickLocations([user1])
+print(foursquareAPI.get_venue_price(fVenues[0]))
 # venues = foursquareAPI.search(user1,foursquareAPI.get_category_id('diner'))
 # for venue in venues:
 #     print(foursquareAPI.get_venue_location(venue))

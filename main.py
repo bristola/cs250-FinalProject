@@ -37,19 +37,28 @@ if __name__ == '__main__':
         command = str(input("\nWhat would you like to do\n")).lower()
 
 def createUser():
+    print("Please enter in user's information, enter cancel to cancel")
     userID = input("What is the users ID? ")
+    if userID == "cancel":
+        return
     city = None
     state = None
     city = input("What city do you live in? ")
+    if city == "cancel":
+        return
     state = input("What state is the city in? ")
+    if state == "cancel":
+        return
     user = User(userID, city, state)
 
-    print("Please enter as many food intersts you want from the list of food interests (type stop if you are done entering interests)")
+    print("Please enter as many food intersts you want from the list of food interests (type stop if you are done entering interests, type cancel to cancel)")
     foodInterests = list()
     while (True):
         interest = input().lower()
         if (interest == "stop"):
             break
+        if (interest == "cancel"):
+            return
         foodInterests.append(interest)
     for interest in list(foodInterests):
         category_id = foursquareAPI.get_category_id(interest)
@@ -57,12 +66,14 @@ def createUser():
             foodInterests.remove(interest)
     user.setFoodInterests(foodInterests)
 
-    print("Please enter as many activity intersts you want from the list of activity intersts (type stop if you are done entering interests) ")
+    print("Please enter as many activity intersts you want from the list of activity intersts (type stop if you are done entering interests, type cancel to cancel) ")
     interests = list()
     while (True):
         interest = input().lower()
         if (interest == "stop"):
             break
+        if (interest == "cancel"):
+            return
         interests.append(interest)
     for i in list(interests):
         category_id = foursquareAPI.get_category_id(i)
