@@ -1,4 +1,4 @@
-import foursquareTest
+import foursquareAPI
 
 def rankInterests(users):
     # Rank categories based on occurence
@@ -40,30 +40,24 @@ def pickLocations(users):
     other = ''
     maxFood, maxOther = rankInterests(users)
     for Food in maxFood:
-        food += foursquareTest.get_category_id(Food) + ','
+        food += foursquareAPI.get_category_id(Food) + ','
     for Other in maxOther:
-        other += foursquareTest.get_category_id(Other) + ','
+        other += foursquareAPI.get_category_id(Other) + ','
     for user in users:
-        for venue in foursquareTest.search(user,food):
+        for venue in foursquareAPI.search(user,food):
             if venue not in food_venues:
-                print("TEST1")
                 food_venues.append(venue)
-            else:
-                print("TEST3")
-        for venue in foursquareTest.search(user,other):
+        for venue in foursquareAPI.search(user,other):
             if venue not in act_venues:
-                print("TEST2")
                 act_venues.append(venue)
-            else:
-                print("TEST4")
     num = 1
     print("\n"+str(len(food_venues))+" FOOD Locations:")
     for venue in food_venues:
-        print(str(num)+": "+str(venue['name'])+"- "+str(foursquareTest.get_venue_location(venue)))
+        print(str(num)+": "+str(venue['name'])+"- "+str(foursquareAPI.get_venue_location(venue)))
         num+=1
     num = 1
     print("\n"+str(len(act_venues))+" Activities:")
     for venue in act_venues:
-        print(str(num)+": "+str(venue['name'])+"- "+str(foursquareTest.get_venue_location(venue)))
+        print(str(num)+": "+str(venue['name'])+"- "+str(foursquareAPI.get_venue_location(venue)))
         num+=1
     return

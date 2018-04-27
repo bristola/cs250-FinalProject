@@ -1,12 +1,12 @@
 import main
-import foursquareTest
+import foursquareAPI
 import picker
 from user import User
 
 commands = ['quit','help','categories','search','new user','show users','delete user','pick location']
 users = list()
 if __name__ == '__main__':
-    print("Insert project name here\n")
+    print("Venue Picker\n")
     command = str(input("What would you like to do\n")).lower()
     while command != "quit":
         if command == "help":
@@ -16,9 +16,9 @@ if __name__ == '__main__':
         elif command == "categories":
             sub = str(input("Would you like to view sub categories as well (yes/no)\n")).lower()
             if sub == "no":
-                foursquareTest.get_categories()
+                foursquareAPI.get_categories()
             else:
-                foursquareTest.get_sub_categories()
+                foursquareAPI.get_sub_categories()
         elif command == "new user":
             users.append(main.createUser())
         elif command == "show users":
@@ -52,7 +52,7 @@ def createUser():
             break
         foodInterests.append(interest)
     for interest in list(foodInterests):
-        category_id = foursquareTest.get_category_id(interest)
+        category_id = foursquareAPI.get_category_id(interest)
         if category_id == None:
             foodInterests.remove(interest)
     user.setFoodInterests(foodInterests)
@@ -65,7 +65,7 @@ def createUser():
             break
         interests.append(interest)
     for i in list(interests):
-        category_id = foursquareTest.get_category_id(i)
+        category_id = foursquareAPI.get_category_id(i)
         if category_id == None:
             interests.remove(i)
     user.setInterests(interests)
@@ -80,12 +80,12 @@ def delete_user(users):
 
 def general_search():
     category = str(input("What category would you like to search\n")).lower()
-    category_id = foursquareTest.get_category_id(category)
+    category_id = foursquareAPI.get_category_id(category)
     if category_id == None:
         print("Category could not be found")
         return
     num_results = str(input("How many results would you like to see (Max: 50)\n"))
-    foursquareTest.general_search(category_id, num_results)
+    foursquareAPI.general_search(category_id, num_results)
 
 def help_info():
     print("Possible Commands:")
