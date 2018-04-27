@@ -2,37 +2,40 @@ import foursquareAPI
 import sort
 
 def rankInterests(users):
-    # Rank categories based on occurence
+# Rank categories based on occurence
+    maxFood = 0
+    maxRank = 0
     ranksFood = dict()
+    ranks = dict()
     for user in users:
         for food in user.getFoodInterests():
             if food in ranksFood:
                 ranksFood[food] = ranksFood[food] + 1
             else:
                 ranksFood[food] = 1
-
-    ranks = dict()
-    for user in users:
+            if (ranksFood[food] > maxFood):
+                maxFood = ranksFood[food]
         for interest in user.getInterests():
             if interest in ranks:
                 ranks[interest] = ranks[interest] + 1
             else:
                 ranks[interest] = 1
+            if (ranks[interest] > maxRank):
+                maxRank = ranks[interest]
 
-    maxRank = 0
     foodInterests = list()
     for key, value in ranksFood.items():
-        if (value >= maxRank):
+        if (value == maxRank):
             foodInterests.append(key)
 
-    maxRank = 0
     interests = list()
     for key, value in ranks.items():
-        if (value >= maxRank):
+        if (value == maxRank):
             interests.append(key)
 
 
     return foodInterests, interests
+
 
 def pickLocations(users):
     food_venues = list()
