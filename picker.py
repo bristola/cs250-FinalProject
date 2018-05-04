@@ -49,13 +49,23 @@ def pickLocations(users):
         other += foursquareAPI.get_category_id(Other) + ','
     for user in users: # u
         for venue in foursquareAPI.search(user,food): # num returned
-            if venue not in food_venues:
-                food_venues.append(venue)
+            #if venue not in food_venues:
+            food_venues.append(venue)
         for venue in foursquareAPI.search(user,other): # num returned
-            if venue not in act_venues:
-                act_venues.append(venue)
+            #if venue not in act_venues:
+            act_venues.append(venue)
+    removeDuplicates(food_venues)
+    removeDuplicates(act_venues)
     food_venues = sort.sort(food_venues,0,len(food_venues)-1) # nlogn
+    act_venues = sort.sort(act_venues,0,len(food_venues)-1)
     return food_venues, act_venues
+
+def removeDuplicates(venues):
+    checked = list()
+    for venue in venues:
+        if(venue not in checked):
+            checked.append(venue)
+    return checked
 
 def printLocations(food_venues, act_venues):
     num = 1

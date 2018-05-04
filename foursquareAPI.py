@@ -10,7 +10,7 @@ def general_search(city,state,category_id,num_results):
          print(venue['name'])
 
 def search(user,cat):
-    search = api.venues.search(params={'near': str(user.getCity())+","+str(user.getState()),'limit': '3', 'categoryId': str(cat), 'radius': '16000', 'intent': 'browse'})
+    search = api.venues.search(params={'near': str(user.getCity())+","+str(user.getState()),'limit': '10', 'categoryId': str(cat), 'radius': '16000', 'intent': 'browse'})
     venues = search['venues']
     return venues
 
@@ -22,8 +22,11 @@ def get_venue_location(venue):
     return location['formattedAddress']
 
 def get_venue_price(venue):
-    #print(venue['name'])
-    price = get_venue_details(venue['id'])['price']
+    try:
+        price = get_venue_details(venue['id'])['price']
+    except:
+        print(venue['name'])
+        return -1
     return price['tier']
 
 def get_categories():

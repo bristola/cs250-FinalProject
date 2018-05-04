@@ -12,8 +12,8 @@ user2.setFoodInterests(['diner'])
 user3.setFoodInterests(['diner'])
 user4.setFoodInterests(['food court','irish pub'])
 
-user1.setInterests(['movie theater','cemetery'])
-user2.setInterests(['bar','cemetery'])
+user1.setInterests(['movie theater'])
+user2.setInterests(['bar'])
 user3.setInterests(['gun range','pool'])
 user4.setInterests(['park','bar'])
 
