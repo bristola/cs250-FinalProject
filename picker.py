@@ -54,8 +54,8 @@ def pickLocations(users):
         for venue in foursquareAPI.search(user,other): # num returned
             #if venue not in act_venues:
             act_venues.append(venue)
-    removeDuplicates(food_venues)
-    removeDuplicates(act_venues)
+    food_venues = removeDuplicates(food_venues)
+    act_venues = removeDuplicates(act_venues)
     food_venues = sort.sort(food_venues,0,len(food_venues)-1) # nlogn
     act_venues = sort.sort(act_venues,0,len(food_venues)-1)
     return food_venues, act_venues

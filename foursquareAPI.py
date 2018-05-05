@@ -1,6 +1,6 @@
 import foursquare
 
-api = foursquare.Foursquare(client_id='1B2TR04AIROKCJV0DJ1IMGY1XNHZCJLSMOMZABV5WR4LZX4H', client_secret='GTNERYL0L3WMDUG2QSCNWLZCO30AFW1E4X3UMFXACT02L41M', redirect_uri='')
+api = foursquare.Foursquare(client_id='LCC353M4TCQFYV1TTYMKHQ40SLHSHZC5DHFVUGB0QC2DQNTH', client_secret='ZJ0XMHGIMT5IOORPDHVQAUH0NS3M04DOTFM2FEYJLCGARUPW', redirect_uri='')
 auth_uri = api.oauth.auth_url()
 
 def general_search(city,state,category_id,num_results):
@@ -25,7 +25,6 @@ def get_venue_price(venue):
     try:
         price = get_venue_details(venue['id'])['price']
     except:
-        print(venue['name'])
         return -1
     return price['tier']
 
